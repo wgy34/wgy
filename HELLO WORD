@@ -1,2 +1,11 @@
-print('hello github')
-print（'进行更新和推送测试')
+import requests
+from bs4 import BeautifulSoup
+res=requests.get('https://localprod.pandateacher.com/python-manuscript/crawler-html/spider-men5.0.html')
+print(res.status_code)
+soup=BeautifulSoup(res.content.decode(),'html.parser')
+items=soup.find_all(class_='books')
+for item in items:
+	kind=item.find('h2')
+	title=item.find(class_='title')
+	brief=item.find(class_='info')
+	print(kind.text,'\n',title.text,'\n',title['href'],'\n',brief.text)
