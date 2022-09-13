@@ -1,47 +1,11 @@
-import requests,json,js2py
+import requests
 from bs4 import BeautifulSoup
-#爬取网页内容
-# res=requests.get('https://localprod.pandateacher.com/python-manuscript/crawler-html/spider-men5.0.html')
-# print(res.status_code)
-# soup=BeautifulSoup(res.content.decode(),'html.parser')
-# items=soup.find_all(class_='books')
-# for item in items:
-# 	kind=item.find('h2')
-# 	title=item.find(class_='title')
-# 	brief=item.find(class_='info')
-# 	print(kind.text,'\n',title.text,'\n',title['href'],'\n',brief.text)
-
-#保持会话，操作cookies，登录和发送评论。
-# session=requests.session()
-# headers={
-# 	'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
-# }
-# try:
-# 	cookies_txt=open('cookies.txt','r')
-# 	cookies_dict=json.loads(cookies_txt.read())
-# 	cookies=requests.utils.cookiejar_from_dict(cookies_dict)
-# 	session.cookies=cookies
-# except FileNotFoundError:
-# 	url='https://wordpress-edu-3autumn.localprod.oc.forchange.cn/wp-login.php'
-# 	data={'log': input('请输入你的账号:'),
-# 		  'pwd': input('请输入你的密码:'),
-# 		  'wp-submit': '登录',
-#           'redirect_to': 'https://wordpress-edu-3autumn.localprod.oc.forchange.cn',
-#           'testcookie': '1'
-# 	}
-# 	session.post(url,headers=headers,data=data)
-# 	cookies_dict=requests.utils.dict_from_cookiejar(session.cookies)
-# 	cookies_str=json.dumps(cookies_dict)
-# 	f=open('cookies.txt','w')
-# 	f.write(cookies_str)
-# 	f.close()
-
-# url_1='https://wordpress-edu-3autumn.localprod.oc.forchange.cn/wp-comments-post.php'
-# data_1={
-# 	'comment': input('请输入你想评论的内容：'),
-# 	'submit': '发表评论',
-# 	'comment_post_ID': '13',
-# 	'comment_parent': '0'
-# }
-# session.post(url_1,headers=headers,data=data_1)
-
+res=requests.get('https://localprod.pandateacher.com/python-manuscript/crawler-html/spider-men5.0.html')
+print(res.status_code)
+soup=BeautifulSoup(res.content.decode(),'html.parser')
+items=soup.find_all(class_='books')
+for item in items:
+	kind=item.find('h2')
+	title=item.find(class_='title')
+	brief=item.find(class_='info')
+	print(kind.text,'\n',title.text,'\n',title['href'],'\n',brief.text)
